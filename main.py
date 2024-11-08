@@ -23,11 +23,8 @@ def gombnyom(event):
 
 # Ablak létrehozása
 root = tk.Tk()
-root.title("Számológép")
-
-# Ablak háttérszíne
 root.config(bg="#2d2d2d")
-
+root.title("Számológép")
 # Képernyő mező (ahova a számokat írjuk)
 entry = tk.Entry(root, width=15, font=("Arial", 24), borderwidth=2, relief="solid", justify="right", bg="#f1f1f1", fg="#333", bd=3)
 entry.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
@@ -38,17 +35,14 @@ gombok = [
     ("4", 2, 0), ("5", 2, 1), ("6", 2, 2), ("*", 2, 3),
     ("1", 3, 0), ("2", 3, 1), ("3", 3, 2), ("-", 3, 3),
     ("0", 4, 0), (".", 4, 1), ("C", 4, 2), ("+", 4, 3),
-    ("=", 5, 0, 4)  # A "=" gomb most szélesebb, mert lefoglalja az utolsó sort
+    ("=", 5, 0, 4)  # A "C" gomb most szélesebb, mert lefoglalja az utolsó sort
 ]
 
 # Gombok hozzáadása a GUI-hoz
 for szoveg, sor, oszlop, *meret in gombok:
     gomb = tk.Button(root, text=szoveg, width=5, height=2, font=("Arial", 18), bg="#4d4d4d", fg="#fff", bd=2, relief="raised", activebackground="#616161", activeforeground="#fff")
-    gomb.grid(row=sor, column=oszlop, columnspan=meret[0] if meret else 1, padx=10, pady=10)
-
-    # Hover (egér fölé vitt) hatás: világosabb szín
-    gomb.bind("<Enter>", lambda event: event.widget.config(bg="#666"))
-    gomb.bind("<Leave>", lambda event: event.widget.config(bg="#4d4d4d"))
+    gomb.grid(row=sor, column=oszlop, columnspan=meret[0] if meret else 1, padx=5, pady=5)
+    gomb.bind("<Button-1>", gombnyom)
 
 # A GUI futtatása
 root.mainloop()
